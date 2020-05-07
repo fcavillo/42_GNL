@@ -6,7 +6,7 @@
 /*   By: fcavillo <fcavillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 17:11:32 by fcavillo          #+#    #+#             */
-/*   Updated: 2020/04/29 17:32:39 by fcavillo         ###   ########.fr       */
+/*   Updated: 2020/05/07 16:23:56 by fcavillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,21 @@ int				get_next_line(int fd, char **line);
 int main()
 {
 	int             fd;
-	int             i;
-	int             j;
-	char    		*line = 0;
-	char			*lineadress[66];
+	int				a = 0;
+	char    		*line;
 
-	j = 1;
 
-	if (!(fd = open("files/alphabet", O_RDONLY)))
+	if (!(fd = open("ex.txt", O_RDONLY)))
 	{
 		printf("\nError in open\n");
 		return (0);
 	}
-	while ((i = get_next_line(fd, &line)) > 0)
+	while ((a = (get_next_line(fd, &line)) > 0))
 	{
-		printf("|%s\n", line);
-		lineadress[j - 1] = line;
-		j++;
+		printf("%d ", a);
+		printf("%s\n", line);
 	}
-	printf("|%s\n", line);
+	printf("%d\n", a);
 	free(line);
 	close(fd);
-
-	while (--j > 0)
-		free(lineadress[j - 1]);
-	j = 1;
 }
